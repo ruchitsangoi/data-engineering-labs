@@ -19,7 +19,7 @@ print(df)
 
 # --- Handling Missing Values ---
 # df['age'].fillna(df['age'].mean(), inplace=True)       # Replace missing age with average
-df['age'] = df['age'].fillna(df['age'].mean())
+df['age'] = df['age'].fillna(round(df['age'].mean()))
 # df['city'].fillna('Unknown', inplace=True)             # Replace missing city with 'Unknown'
 df['city'] = df['city'].fillna('Unknown')
 # df['income'].fillna(df['income'].median(), inplace=True)  # Replace missing income with median
