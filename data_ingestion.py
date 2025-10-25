@@ -1,6 +1,7 @@
 import pandas as pd
 import logging
 from io import StringIO
+import os
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -37,3 +38,9 @@ df_combined = pd.concat([df_csv, df_excel, df_json], ignore_index=True)
 
 logging.info(f"Combined dataset has {len(df_combined)} total records")
 print(df_combined)
+
+# Ensure 'data' folder exists
+os.makedirs('data', exist_ok=True)
+
+df_combined.to_csv('data/combined_data.csv', index=False)
+logging.info("Combined dataset saved to 'data/combined_data.csv'")
