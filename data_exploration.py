@@ -1,9 +1,17 @@
+# %% [markdown]
+# ### Step 13: Data Exploration
+# This section explores numerical and categorical data using Pandas and Seaborn visualizations.
+
+# %%
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# %%
 # Read the combined CSV file
 df = pd.read_csv("data/combined_data.csv")
+df['age'] = pd.to_numeric(df['age'], errors='coerce')
+
 
 # Basic info
 print("\n--- Dataset Overview ---")
@@ -21,6 +29,7 @@ print(df.isnull().sum())
 print("\n--- Unique Values per Column ---")
 print(df.nunique())
 
+# %%
 # Distribution of a numeric column (change column name as per your dataset)
 if "age" in df.columns:
     plt.figure(figsize=(8, 5))
@@ -28,6 +37,7 @@ if "age" in df.columns:
     plt.title("Age Distribution")
     plt.show()
 
+# %%
 # Correlation heatmap
 numeric_cols = df.select_dtypes(include=["float64", "int64"]).columns
 if len(numeric_cols) > 1:
@@ -35,3 +45,4 @@ if len(numeric_cols) > 1:
     sns.heatmap(df[numeric_cols].corr(), annot=True, cmap="coolwarm")
     plt.title("Correlation Heatmap")
     plt.show()
+
