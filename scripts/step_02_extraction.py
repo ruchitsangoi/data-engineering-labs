@@ -12,6 +12,8 @@ import json
 import logging
 from pathlib import Path
 import pandas as pd
+from config import RAW_DATA
+
 
 # %%
 logging.basicConfig(
@@ -19,7 +21,6 @@ logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(message)s"
 )
 
-DATA_RAW_DIR = Path("data/raw")
 
 # %%
 def extract_from_csv(file_path: Path) -> pd.DataFrame:
@@ -72,14 +73,14 @@ if __name__ == "__main__":
     logging.info("Step 02 started")
 
     # CSV extraction
-    csv_file = DATA_RAW_DIR / "users.csv"
+    csv_file = RAW_DATA / "users.csv"
     df_csv = extract_from_csv(csv_file)
 
     # API extraction
     df_api = extract_from_api()
 
     # JSON extraction
-    json_file = DATA_RAW_DIR / "users_nested.json"
+    json_file = RAW_DATA / "users_nested.json"
     df_json = extract_from_json(json_file)
 
     logging.info(f"CSV records: {len(df_csv)}")
@@ -88,3 +89,5 @@ if __name__ == "__main__":
 
     logging.info("Step 02 completed")
 
+
+# %%
